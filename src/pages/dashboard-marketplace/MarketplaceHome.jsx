@@ -35,7 +35,7 @@ export default function MarketplaceHome() {
     setLoading(true);
     try {
       const [ordersRes, delRes] = await Promise.all([
-        fetch("http://localhost:5000/api/orders", {
+        fetch("https://server-uxqv.onrender.com/api/orders", {
           headers: { Authorization: `Bearer ${token}` },
         }),
         fetch("http://localhost:5000/api/deliveries", {
@@ -119,7 +119,7 @@ export default function MarketplaceHome() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/deliveries", {
+      const res = await fetch("https://server-uxqv.onrender.com/api/deliveries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export default function MarketplaceHome() {
   const deleteDelivery = async (id) => {
     if (!confirm("Delete this delivery?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/deliveries/${id}`, {
+      const res = await fetch(`https://server-uxqv.onrender.com/api/deliveries/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

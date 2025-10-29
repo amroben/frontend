@@ -32,7 +32,7 @@ const filteredProducts = products.filter(
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products", {
+        const res = await fetch("https://server-uxqv.onrender.com/api/products", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -49,7 +49,7 @@ const filteredProducts = products.filter(
   // ✅ تغيير حالة المنتج
   const toggleActive = async (product) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${product._id}`, {
+      const res = await fetch(`https://server-uxqv.onrender.com/api/products/${product._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const filteredProducts = products.filter(
   const deleteProduct = async (id) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const res = await fetch(`https://server-uxqv.onrender.com/api/products/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -130,7 +130,7 @@ const uploadImages = async () => {
   imageFiles.forEach(file => formDataObj.append("images", file));
 
   try {
-    const res = await fetch("http://localhost:5000/api/upload", {
+    const res = await fetch("https://server-uxqv.onrender.com/api/upload", {
       method: "POST",
       body: formDataObj,
     });
@@ -167,8 +167,8 @@ const handleSubmit = async (e) => {
 
   try {
     const url = isEdit
-      ? `http://localhost:5000/api/products/${editingId}`
-      : "http://localhost:5000/api/products";
+      ? `https://server-uxqv.onrender.com/api/products/${editingId}`
+      : "https://server-uxqv.onrender.com/api/products";
     const method = isEdit ? "PATCH" : "POST";
 
     const res = await fetch(url, {
@@ -446,7 +446,7 @@ const handleSubmit = async (e) => {
           {selectedProduct.images.map((imgUrl, idx) => (
             <div key={idx} className="relative group">
               <img
-                src={imgUrl.startsWith("http") ? imgUrl : `http://localhost:5000${imgUrl}`}
+                src={imgUrl.startsWith("http") ? imgUrl : `https://server-uxqv.onrender.com${imgUrl}`}
                 alt={`Product ${idx}`}
                 className="rounded-lg border border-slate-700 object-cover w-full h-32"
               />
@@ -455,7 +455,7 @@ const handleSubmit = async (e) => {
                   if (!confirm("Delete this image?")) return;
                   try {
                     const res = await fetch(
-                      `http://localhost:5000/api/products/${selectedProduct._id}/remove-image`,
+                      `https://server-uxqv.onrender.com/api/products/${selectedProduct._id}/remove-image`,
                       {
                         method: "PATCH",
                         headers: {

@@ -25,7 +25,7 @@ export default function Orders() {
     setLoading(true);
     try {
       const [ordersRes, delRes] = await Promise.all([
-        fetch("http://localhost:5000/api/orders", {
+        fetch("https://server-uxqv.onrender.com/api/orders", {
           headers: { Authorization: `Bearer ${token}` },
         }),
         fetch("http://localhost:5000/api/deliveries", {
@@ -54,7 +54,7 @@ export default function Orders() {
   const deleteOrder = async (orderId) => {
     if (!confirm("Are you sure you want to delete this order?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+      const res = await fetch(`https://server-uxqv.onrender.com/api/orders/${orderId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -91,7 +91,7 @@ export default function Orders() {
   // ✅ تنفيذ طلب PATCH لتحديث الطلب
   const updateOrderStatus = async (orderId, body) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+      const res = await fetch(`https://server-uxqv.onrender.com/api/orders/${orderId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ export default function Orders() {
       const field =
         status === "completed" ? "completedCount" : "cancelledCount";
 
-      await fetch(`http://localhost:5000/api/deliveries/${delivery._id}`, {
+      await fetch(`https://server-uxqv.onrender.com/api/deliveries/${delivery._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
